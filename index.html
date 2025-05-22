@@ -183,6 +183,9 @@
           <p>
             Continuous Path-Wise IK (CPW-IK) is a fast dynamic programming based algorithm, which guarantees to provide only feasible trajectories, with bounded error. We build a layered Directed Acyclic Graph G in joint space, where each layer 𝐿𝑖 represents time stamp 𝑖 in the trajectory, and each row refers to a specific branch of the robotic arm. We then add start and end dummy nodes s and t to the graph. Node 𝑎 ∈ 𝐿𝑘 is connected to node 𝑏 ∈ 𝐿𝑘+1 if and only if their 𝐿1 distance in C-space is smaller than some predefined threshold. Next, we perform a search for a directed path in G from s to t with the minimum maximally-weighted edge.
           </p>
+          <center>
+            <img src="static/images/cpw_ik.png" alt="CPW-IK Visualization" style="max-width: 100%; height: auto;"/>
+          </center>
           <p>
             We decide the alternation intervals in advance. That is, we split the interval \([0, 1]\) into
             \[
