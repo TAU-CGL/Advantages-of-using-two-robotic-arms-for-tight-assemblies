@@ -1,0 +1,16 @@
+{
+  "dynamic_part_arm_dh": "dh_configs/lab_uri_industrial_16505_dh.json",
+  "static_part_arm_dh": "dh_configs/lab_uri_industrial_16505_static.json",
+  "dynamic_part_trajectory": "paths/inputs/AlphaZ/euler_az_path.csv",
+  "static_part_trajectory": "paths/inputs/AlphaZ/static_az_trajectory.csv",
+  "dynamic_part_arm_urdf_path": "models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505.urdf",
+  "static_part_arm_urdf_path": "models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505.urdf",
+  "dynamic_ref_point_relative_pose": [0, -0.055, -0.006, -90.0, 0, 90],
+  "static_ref_point_relative_pose": [0.00041, -0.063, 0.00091, -90.0, 0, -66.0],
+  "dynamic_part_arm_position": [0, 0, 0],
+  "static_part_arm_position": [0.5, -0.952, 0.264],
+  "static_part_relative_position": [-0.03834, 0.04674, -0.02207],
+  "static_part_relative_rotation": [-85.263, 1.895, 20.842],
+  "theta_offsets": [180, 0, 0, 0, 0, 180],
+  "position_factor": 0.07
+}

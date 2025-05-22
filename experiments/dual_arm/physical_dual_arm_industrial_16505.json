@@ -1,0 +1,16 @@
+{
+  "dynamic_part_arm_dh": "dh_configs/lab_uri_industrial_16505_dh.json",
+  "static_part_arm_dh": "dh_configs/lab_uri_industrial_16505_static.json",
+  "dynamic_part_trajectory": "paths/inputs/industrial_16505/euler_16505_inflated_path.csv",
+  "static_part_trajectory": "paths/inputs/industrial_16505/static_trajectory_16505.csv",
+  "dynamic_part_arm_urdf_path": "models/urdf/ur5_industrial_16505/ur5_industrial_16505.urdf",
+  "static_part_arm_urdf_path": "models/urdf/ur5_static_industrial_16505/ur5_static_industrial_16505.urdf",
+  "dynamic_ref_point_relative_pose": [0.0, 0.0, 0.0, 0, 90, 0],
+  "static_ref_point_relative_pose": [0.03, 0.08, 0.0, 0, -90, -90],
+  "dynamic_part_arm_position": [0, 0, 0],
+  "static_part_arm_position": [0.5, -0.955, 0.264],
+  "static_part_relative_position": [0.00068, -0.00113, 0.00039],
+  "static_part_relative_rotation": [0, 0, 0],
+  "theta_offsets": [180, 0, 0, 0, 0, 180],
+  "position_factor": 0.09
+}

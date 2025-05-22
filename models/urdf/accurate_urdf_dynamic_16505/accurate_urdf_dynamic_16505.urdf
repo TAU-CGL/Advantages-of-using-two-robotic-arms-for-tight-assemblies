@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<robot name="UR5_Table">
+    <link name="robot_base">
+        <visual name="UR5_Table">
+            <origin rpy="-3.141593 3.141593 -3.141593" xyz="0.000000 0.000000 0.000000" />
+            <geometry>
+                <box size="0.000500 0.000500 0.000500" />
+            </geometry>
+            <material name="robot_base_material">
+                <color rgba="1.000000 1.000000 1.000000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="base_link_base_link_inertia" type="fixed">
+        <axis xyz="0 0 1" />
+        <parent link="robot_base" />
+        <child link="base_link_inertia_respondable" />
+        <origin rpy="3.141593 1.570796 0.000000" xyz="0.000000 0.000000 0.000000" />
+    </joint>
+    <link name="base_link_inertia_respondable">
+        <inertial>
+            <origin rpy="-3.141593 1.570796 0.000000" xyz="0.000000 0.000000 -0.000000" />
+            <inertia izz="0.0072" iyz="0.0" iyy="0.00443333156" ixz="0.0" ixy="0.0" ixx="0.00443333156" />
+            <mass value="4.0" />
+        </inertial>
+        <collision name="base_link_inertia_respondable">
+            <origin rpy="-3.141593 1.570796 0.000000" xyz="0.000000 0.000000 -0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_base_link_inertia_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="base_link_inertia_visual">
+            <origin rpy="-3.141593 1.570796 0.000000" xyz="0.000000 0.000000 -0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_base_link_inertia_visual_vis_1.dae" />
+            </geometry>
+            <material name="base_link_inertia_visual_material">
+                <color rgba="0.278431 0.278431 0.278431 1.0" />
+            </material>
+        </visual>
+        <visual name="base_link_inertia_visual">
+            <origin rpy="-3.141593 1.570796 0.000000" xyz="0.000000 0.000000 -0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_base_link_inertia_visual_vis_2.dae" />
+            </geometry>
+            <material name="base_link_inertia_visual_material">
+                <color rgba="0.250000 0.250000 0.250000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="dynamic_joint" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit lower="-6.2831853071796" velocity="3.1415926535898" effort="150.0" upper="6.2831853071796" />
+        <parent link="base_link_inertia_respondable" />
+        <child link="shoulder_link_respondable" />
+        <origin rpy="-0.000000 -1.570796 0.000000" xyz="-0.162500 0.000000 0.000000" />
+    </joint>
+    <link name="shoulder_link_respondable">
+        <inertial>
+            <origin rpy="-3.141593 3.141593 -0.000000" xyz="-0.000000 0.000000 0.000000" />
+            <inertia izz="0.00666" iyz="0.0" iyy="0.010267495893" ixz="0.0" ixy="0.0" ixx="0.010267495893" />
+            <mass value="3.7" />
+        </inertial>
+        <collision name="shoulder_link_respondable">
+            <origin rpy="-3.141593 3.141593 -0.000000" xyz="-0.000000 0.000000 0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_shoulder_link_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="shoulder_link_visual">
+            <origin rpy="-3.141593 3.141593 -0.000000" xyz="-0.000000 0.000000 0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_shoulder_link_visual_vis_1.dae" />
+            </geometry>
+            <material name="shoulder_link_visual_material">
+                <color rgba="0.278431 0.278431 0.278431 1.0" />
+            </material>
+        </visual>
+        <visual name="shoulder_link_visual">
+            <origin rpy="-3.141593 3.141593 -0.000000" xyz="-0.000000 0.000000 0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_shoulder_link_visual_vis_2.dae" />
+            </geometry>
+            <material name="shoulder_link_visual_material">
+                <color rgba="0.250000 0.250000 0.250000 1.0" />
+            </material>
+        </visual>
+        <visual name="shoulder_link_visual">
+            <origin rpy="-3.141593 3.141593 -0.000000" xyz="-0.000000 0.000000 0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_shoulder_link_visual_vis_3.dae" />
+            </geometry>
+            <material name="shoulder_link_visual_material">
+                <color rgba="0.490196 0.678431 0.800000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="dynamic_joint_2" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit lower="-6.2831853071796" velocity="3.1415926535898" effort="150.0" upper="6.2831853071796" />
+        <parent link="shoulder_link_respondable" />
+        <child link="upper_arm_link_respondable" />
+        <origin rpy="-1.570796 3.141593 3.141593" xyz="-0.000000 0.000000 0.000000" />
+    </joint>
+    <link name="upper_arm_link_respondable">
+        <inertial>
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="-0.212500 0.000000 0.138000" />
+            <inertia izz="0.0151074" iyz="5.2748197748512e-17" iyy="0.13388578186233" ixz="2.6374098874256e-17" ixy="1.489704654942e-33" ixx="0.13388578186233" />
+            <mass value="8.393" />
+        </inertial>
+        <collision name="upper_arm_link_respondable">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 0.000000 0.138000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_upper_arm_link_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="upper_arm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 0.000000 0.138000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_upper_arm_link_visual_vis_1.dae" />
+            </geometry>
+            <material name="upper_arm_link_visual_material">
+                <color rgba="0.490196 0.678431 0.800000 1.0" />
+            </material>
+        </visual>
+        <visual name="upper_arm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 0.000000 0.138000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_upper_arm_link_visual_vis_2.dae" />
+            </geometry>
+            <material name="upper_arm_link_visual_material">
+                <color rgba="0.278431 0.278431 0.278431 1.0" />
+            </material>
+        </visual>
+        <visual name="upper_arm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 0.000000 0.138000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_upper_arm_link_visual_vis_3.dae" />
+            </geometry>
+            <material name="upper_arm_link_visual_material">
+                <color rgba="0.250000 0.250000 0.250000 1.0" />
+            </material>
+        </visual>
+        <visual name="upper_arm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 0.000000 0.138000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_upper_arm_link_visual_vis_4.dae" />
+            </geometry>
+            <material name="upper_arm_link_visual_material">
+                <color rgba="0.820392 0.820392 0.820392 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="dynamic_joint_3" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit lower="-3.1415926535898" velocity="3.1415926535898" effort="150.0" upper="3.1415926535898" />
+        <parent link="upper_arm_link_respondable" />
+        <child link="forearm_link_respondable" />
+        <origin rpy="-3.141593 3.141593 -3.141593" xyz="-0.425000 0.000000 -0.000000" />
+    </joint>
+    <link name="forearm_link_respondable">
+        <inertial>
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="-0.196100 0.000000 0.007000" />
+            <inertia izz="0.004095" iyz="1.2041192531769e-17" iyy="0.031209355099586" ixz="6.0205962658846e-18" ixy="4.0379817586001e-34" ixx="0.031209355099586" />
+            <mass value="2.275" />
+        </inertial>
+        <collision name="forearm_link_respondable">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 -0.000000 0.007000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_forearm_link_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="forearm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 -0.000000 0.007000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_forearm_link_visual_vis_1.dae" />
+            </geometry>
+            <material name="forearm_link_visual_material">
+                <color rgba="0.278431 0.278431 0.278431 1.0" />
+            </material>
+        </visual>
+        <visual name="forearm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 -0.000000 0.007000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_forearm_link_visual_vis_2.dae" />
+            </geometry>
+            <material name="forearm_link_visual_material">
+                <color rgba="0.250000 0.250000 0.250000 1.0" />
+            </material>
+        </visual>
+        <visual name="forearm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 -0.000000 0.007000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_forearm_link_visual_vis_3.dae" />
+            </geometry>
+            <material name="forearm_link_visual_material">
+                <color rgba="0.490196 0.678431 0.800000 1.0" />
+            </material>
+        </visual>
+        <visual name="forearm_link_visual">
+            <origin rpy="-1.570796 3.141593 1.570796" xyz="0.000000 -0.000000 0.007000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_forearm_link_visual_vis_4.dae" />
+            </geometry>
+            <material name="forearm_link_visual_material">
+                <color rgba="0.820392 0.820392 0.820392 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="dynamic_joint_4" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit lower="-6.2831853071796" velocity="3.1415926535898" effort="28.0" upper="6.2831853071796" />
+        <parent link="forearm_link_respondable" />
+        <child link="wrist_1_link_respondable" />
+        <origin rpy="3.141593 3.141593 3.141593" xyz="-0.392200 0.000000 0.133300" />
+    </joint>
+    <link name="wrist_1_link_respondable">
+        <inertial>
+            <origin rpy="-1.570796 3.141593 3.141593" xyz="0.000000 -0.000000 -0.000000" />
+            <inertia izz="0.00255989897604" iyz="-8.120148465629e-20" iyy="0.0021942" ixz="0.0" ixy="0.0" ixx="0.00255989897604" />
+            <mass value="1.219" />
+        </inertial>
+        <collision name="wrist_1_link_respondable">
+            <origin rpy="-1.570796 3.141593 3.141593" xyz="0.000000 -0.000000 -0.127000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_1_link_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="wrist_1_link_visual">
+            <origin rpy="-1.570796 3.141593 3.141593" xyz="0.000000 -0.000000 -0.127000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_1_link_visual_vis_1.dae" />
+            </geometry>
+            <material name="wrist_1_link_visual_material">
+                <color rgba="0.278431 0.278431 0.278431 1.0" />
+            </material>
+        </visual>
+        <visual name="wrist_1_link_visual">
+            <origin rpy="-1.570796 3.141593 3.141593" xyz="0.000000 -0.000000 -0.127000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_1_link_visual_vis_2.dae" />
+            </geometry>
+            <material name="wrist_1_link_visual_material">
+                <color rgba="0.490196 0.678431 0.800000 1.0" />
+            </material>
+        </visual>
+        <visual name="wrist_1_link_visual">
+            <origin rpy="-1.570796 3.141593 3.141593" xyz="0.000000 -0.000000 -0.127000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_1_link_visual_vis_3.dae" />
+            </geometry>
+            <material name="wrist_1_link_visual_material">
+                <color rgba="0.250000 0.250000 0.250000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="dynamic_joint_5" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit lower="-6.2831853071796" velocity="3.1415926535898" effort="28.0" upper="6.2831853071796" />
+        <parent link="wrist_1_link_respondable" />
+        <child link="wrist_2_link_respondable" />
+        <origin rpy="-1.570796 3.141593 3.141593" xyz="0.000000 -0.099700 -0.000000" />
+    </joint>
+    <link name="wrist_2_link_respondable">
+        <inertial>
+            <origin rpy="-3.141593 3.141593 -3.141593" xyz="0.000000 -0.000000 0.000000" />
+            <inertia izz="0.0021942" iyz="0.0" iyy="0.00255989897604" ixz="0.0" ixy="0.0" ixx="0.00255989897604" />
+            <mass value="1.219" />
+        </inertial>
+        <collision name="wrist_2_link_respondable">
+            <origin rpy="-3.141593 3.141593 -3.141593" xyz="0.000000 -0.000000 -0.099700" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_2_link_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="wrist_2_link_visual">
+            <origin rpy="-3.141593 3.141593 -3.141593" xyz="0.000000 -0.000000 -0.099700" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_2_link_visual_vis_1.dae" />
+            </geometry>
+            <material name="wrist_2_link_visual_material">
+                <color rgba="0.278431 0.278431 0.278431 1.0" />
+            </material>
+        </visual>
+        <visual name="wrist_2_link_visual">
+            <origin rpy="-3.141593 3.141593 -3.141593" xyz="0.000000 -0.000000 -0.099700" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_2_link_visual_vis_2.dae" />
+            </geometry>
+            <material name="wrist_2_link_visual_material">
+                <color rgba="0.490196 0.678431 0.800000 1.0" />
+            </material>
+        </visual>
+        <visual name="wrist_2_link_visual">
+            <origin rpy="-3.141593 3.141593 -3.141593" xyz="0.000000 -0.000000 -0.099700" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_2_link_visual_vis_3.dae" />
+            </geometry>
+            <material name="wrist_2_link_visual_material">
+                <color rgba="0.250000 0.250000 0.250000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="dynamic_joint_6" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit lower="-6.2831853071796" velocity="3.1415926535898" effort="28.0" upper="6.2831853071796" />
+        <parent link="wrist_2_link_respondable" />
+        <child link="wrist_3_link_respondable" />
+        <origin rpy="1.570796 3.141593 3.141593" xyz="0.000000 0.099600 -0.000000" />
+    </joint>
+    <link name="wrist_3_link_respondable">
+        <inertial>
+            <origin rpy="-1.570796 3.141593 -3.141593" xyz="-0.000000 0.000000 -0.022900" />
+            <inertia izz="9.8904100521677e-05" iyz="7.3747867764424e-21" iyy="0.0001321171875" ixz="0.0" ixy="0.0" ixx="9.8904100521677e-05" />
+            <mass value="0.1879" />
+        </inertial>
+        <collision name="wrist_3_link_respondable">
+            <origin rpy="-1.570796 3.141593 -3.141593" xyz="0.000000 0.000000 -0.098900" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_3_link_respondable_coll_1.dae" />
+            </geometry>
+        </collision>
+        <visual name="wrist_3_link_visual">
+            <origin rpy="-1.570796 3.141593 -3.141593" xyz="0.000000 0.000000 -0.098900" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_wrist_3_link_visual_vis_1.dae" />
+            </geometry>
+            <material name="wrist_3_link_visual_material">
+                <color rgba="0.820392 0.820392 0.820392 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="wrist_3_flange" type="fixed">
+        <axis xyz="0 0 1" />
+        <parent link="wrist_3_link_respondable" />
+        <child link="flange_visual" />
+        <origin rpy="3.141593 3.141593 1.570796" xyz="0.000000 0.000000 -0.000000" />
+    </joint>
+    <link name="flange_visual">
+        <visual name="flange_visual">
+            <origin rpy="-0.000000 -1.570796 0.000000" xyz="0.000000 0.000000 0.000000" />
+            <geometry>
+                <box size="0.000500 0.000500 0.000500" />
+            </geometry>
+            <material name="flange_visual_material">
+                <color rgba="1.000000 1.000000 1.000000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="flange_tool0" type="fixed">
+        <axis xyz="0 0 1" />
+        <parent link="flange_visual" />
+        <child link="tool0_visual" />
+        <origin rpy="-1.570796 1.570796 0.000000" xyz="0.000000 0.000000 0.000000" />
+    </joint>
+    <link name="tool0_visual">
+        <visual name="tool0_visual">
+            <origin rpy="-0.000000 -1.570796 0.000000" xyz="0.000000 0.000000 0.000000" />
+            <geometry>
+                <box size="0.000500 0.000500 0.000500" />
+            </geometry>
+            <material name="tool0_visual_material">
+                <color rgba="1.000000 1.000000 1.000000 1.0" />
+            </material>
+        </visual>
+        <visual name="dynamic_visual">
+            <origin rpy="-0.000000 3.141593 -0.000000" xyz="-0.175000 0.000000 0.000000" />
+            <geometry>
+                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_dynamic_16505/accurate_urdf_dynamic_16505_dynamic_visual_vis_1.dae" />
+            </geometry>
+            <material name="dynamic_visual_material">
+                <color rgba="0.600000 0.600000 0.600000 1.0" />
+            </material>
+        </visual>
+    </link>
+    <joint name="base_link_base_fixed_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <parent link="robot_base" />
+        <child link="base_visual" />
+        <origin rpy="3.141593 1.570796 0.000000" xyz="0.000000 0.000000 0.000000" />
+    </joint>
+    <link name="base_visual">
+        <visual name="base_visual">
+            <origin rpy="-0.000000 -1.570796 0.000000" xyz="0.000000 0.000000 -0.000000" />
+            <geometry>
+                <box size="0.000500 0.000500 0.000500" />
+            </geometry>
+            <material name="base_visual_material">
+                <color rgba="1.000000 1.000000 1.000000 1.0" />
+            </material>
+        </visual>
+    </link>
+</robot>
