@@ -193,9 +193,6 @@
           <p>
             Finally, we find the shortest path in the search tree. We can optimize over various metrics by choosing a weight function over the edges. In this work, we optimize over <i>makespan</i>.
           </p>
-          <center>
-            <img src="static/images/cpw_ik.png" alt="CPW-IK Visualization" style="max-width: 100%; height: auto;"/>
-          </center>
         </div>
       </div>
     </div>
@@ -217,11 +214,14 @@
             <img src="static/images/results.png" alt="Assembly Results" style="max-width: 100%; height: auto;"/>
           </center>
           <p>
-            The minimum total running time (makespan) over 100 valid placements, expressed in degrees (as angular speed can be decided), for each assembly. The <b>Single-arm</b> row refers to settings where one object is static, and only a single arm moves. The <b>Dual-arm</b> row refers to settings where both arms are moving together. <b>Time saved</b> is the time saved when using two robotic arms, compared to a single one.
+            To quantify the performance improvement of using two robotic arms, we conducted extensive experiments comparing single-arm and dual-arm configurations. Below are the results showing the execution times for each assembly type:
           </p>
           <center>
             <img src="static/images/results_table.png" alt="Results Table" style="max-width: 100%; height: auto;"/>
           </center>
+          <p>
+            The minimum total running time (makespan) over 100 valid placements, expressed in degrees (as angular speed can be decided), for each assembly. The <b>Single-arm</b> row refers to settings where one object is static, and only a single arm moves. The <b>Dual-arm</b> row refers to settings where both arms are moving together. <b>Time saved</b> is the time saved when using two robotic arms, compared to a single one.
+          </p>
         </div>
       </div>
     </div>
