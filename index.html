@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta property="og:title" content="A Full-Cycle Assembly Operation: From Digital Planning to Trajectory Execution Using a Robotic Arm"/>
-  <meta property="og:url" content="https://tau-cgl.github.io/Full-Cycle-Assembly-Operation/"/>
+  <meta property="og:title" content="Advantages of Using Two Robotic Arms for Tight Assemblies"/>
+  <meta property="og:url" content="https://tau-cgl.github.io/Advantages-of-using-two-robotic-arms-for-tight-assemblies/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
   <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/> -->
 
 
-  <meta name="twitter:title" content="A Full-Cycle Assembly Operation: From Digital Planning to Trajectory Execution Using a Robotic Arm">
+  <meta name="twitter:title" content="Advantages of Using Two Robotic Arms for Tight Assemblies">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
   <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
   <!-- <meta name="twitter:card" content="summary_large_image"> -->
@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>A Full-Cycle Assembly Operation</title>
+  <title>Advantages of Using Two Robotic Arms for Tight Assemblies</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -40,6 +40,15 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -49,13 +58,15 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">A Full-Cycle Assembly Operation: <br> From Digital Planning to Trajectory Execution Using a Robotic Arm</h1>
+            <h1 class="title is-1 publication-title">Advantages of Using Two Robotic Arms for Tight Assemblies</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
                 <a href="https://www.cgl.cs.tau.ac.il/people/dror-livnat/" target="_blank">Dror Livnat</a><sup>*</sup>,</span>
                 <span class="author-block">
                   <a href="https://www.cgl.cs.tau.ac.il/people/yuval-lavi/" target="_blank">Yuval Lavi</a><sup>*</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://www.cgl.cs.tau.ac.il/people/michael-bilevich/" target="_blank">Michael M. Bilevich</a><sup>*</sup>,</span>
                   <span class="author-block">
                     <a href="https://www.cgl.cs.tau.ac.il/people/dan-halperin/" target="_blank">Dan Halperin</a>
                   </span>
@@ -70,7 +81,7 @@
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="static/pdfs/A Full-Cycle Assembly Operation From Digital Planning to Trajectory Execution Using a Robotic Arm.pdf" target="_blank"
+                        <a href="static/pdfs/paper_ICRA25_WS_Livnat_AdvantagesOfUsingTwoRoboticArmsForTightAssemblies.pdf" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -81,7 +92,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/TAU-CGL/Full-Cycle-Assembly-Operation" target="_blank"
+                    <a href="https://github.com/TAU-CGL/Advantages-of-using-two-robotic-arms-for-tight-assemblies" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -119,7 +130,7 @@
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        Real-world and simulated demonstrations of our framework executing complex assembly trajectories using a robotic arm. The video showcases precise and reliable execution of both industry-related and puzzle-like assemblies, demonstrating the framework’s effectiveness in handling diverse and challenging assembly tasks in physical and virtual environments.
+        Real-world demonstrations of our framework executing complex assembly trajectories using two coordinated robotic arms. The video showcases precise and reliable execution of both industry-related and puzzle-like assemblies, demonstrating the framework's effectiveness in handling diverse and challenging assembly tasks through synchronized dual-arm manipulation in physical environments.
       </h2>
     </div>
   </div>
@@ -134,7 +145,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present an end-to-end framework for planning tight assembly operations, where the input is a set of digital models, and the output is a full execution plan for a physical robotic arm, including the trajectory placement and the grasping. The framework builds on our earlier results on tight assembly planning for free-flying objects and includes the following novel components: (i) the framework itself together with physical demonstrations, (ii) trajectory placement based on novel dynamic path-wise IK and (iii) post processing of the free-flying paths to relax the tightness and smooth the path. The framework provides guarantees as to the quality of the outcome trajectory. For each component we provide the algorithmic details and a full open-source software package for reproducing the process. Lastly, we demonstrate the framework with tight and challenging assembly problems (as well as puzzles, which are planned to be hard to assemble), using a UR5e robotic arm in the real world and in simulation. See the figure at the top for a physical UR5e assembling the alpha-z puzzle (known to be considerably more complicated to assemble than the celebrated alpha puzzle). Full video clips of all the assembly demonstrations together with our open source software are available at <a href="https://github.com/TAU-CGL/Full-Cycle-Assembly-Operation" target="_blank"></a>
+            We demonstrate the advantages of using two robotic arms simultaneously in tight assembly operations. We provide a new end-to-end framework which outputs an execution plan for the robotic arms given their digital CAD models. Our method is implemented both in simulation and in real-life, with theoretical and empirical guarantees on its performance. In particular, we show that simultaneous movement of two arms significantly reduces execution time, produces trajectories of higher quality, and accelerates the search time for valid robot placements. Furthermore, we provide guarantees on the bounds of the required dimensions of the robotic cell.
           </p>
         </div>
       </div>
@@ -143,44 +154,80 @@
 </section>
 <!-- End paper abstract -->
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <center>
-          <!-- Your image here -->
-          <img src="static/images/carousel1.png" alt="Carousel 1"/>
-        </center>
-        <!-- <h2 class="subtitle has-text-centered">
-          Three tight assemblies physically assembled using our framework.
-        </h2> -->
+<!-- Framework Overview -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Framework Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our framework transforms assembly part designs into coordinated joint-based trajectories for two robotic arms. The system handles the complex task of planning synchronized movements while maintaining precise control over both arms throughout the assembly process.
+          </p>
+          <center>
+            <img src="static/images/framework_overview.png" alt="Framework Overview" style="max-width: 100%; height: auto;"/>
+          </center>
+        </div>
       </div>
-      <div class="item">
-        <center>
-          <!-- Your image here -->
-          <img src="static/images/carousel2.jpg" alt="Carousel 2"/>
-        </center>
-        <!-- <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2> -->
-      </div>
-      <div class="item">
-        <center>
-          <!-- Your image here -->
-          <img src="static/images/carousel3.png" alt="Carousel 3"/>
-        </center>
-        <!-- <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2> -->
-     </div>
+    </div>
   </div>
-</div>
-</div>
 </section>
-<!-- End image carousel -->
+
+<!-- CPW-IK Section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Continuous Path-Wise IK</h2>
+        <div class="content has-text-justified">
+          <p>
+            Continuous Path-Wise IK (CPW-IK) is a fast dynamic programming based algorithm, which guarantees to provide only feasible trajectories, with bounded error. We build a layered Directed Acyclic Graph G in joint space, where each layer 𝐿𝑖 represents time stamp 𝑖 in the trajectory, and each row refers to a specific branch of the robotic arm. We then add start and end dummy nodes s and t to the graph. Node 𝑎 ∈ 𝐿𝑘 is connected to node 𝑏 ∈ 𝐿𝑘+1 if and only if their 𝐿1 distance in C-space is smaller than some predefined threshold. Next, we perform a search for a directed path in G from s to t with the minimum maximally-weighted edge.
+          </p>
+          <p>
+            We decide the alternation intervals in advance. That is, we split the interval \([0, 1]\) into
+            \[
+            [0, 1] = \bigcup_{j=0}^{m-1} [t_j, t_{j+1}].
+            \]
+            Exactly one of the following motion patterns is maintained in each of the intervals: (i) only arm \(R_1\) moves; (ii) only arm \(R_2\) moves; or (iii) both arms \(R_1\) and \(R_2\) move simultaneously. In this work, we split \([0, 1]\) into \(m\) equal intervals, although a more elaborate search can be performed. We start with the first interval \([t_0, t_1]\), and evaluate all three options. Note that each pattern yields a different pose in joint-angle space at time \(t_1\). We then recursively construct a search tree, connecting each node, that ends at time \(t_j\), to all three possible motion patterns of the following interval \([t_j, t_{j+1}]\).
+          </p>
+          <p>
+            Finally, we find the shortest path in the search tree. We can optimize over various metrics by choosing a weight function over the edges. In this work, we optimize over <i>makespan</i>.
+          </p>
+          <center>
+            <img src="static/images/cpw_ik.png" alt="CPW-IK Visualization" style="max-width: 100%; height: auto;"/>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Results Section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Four classic challenging assemblies were solved by the framework, using physical robotic arms and in simulation.
+          </p>
+          <center>
+            <img src="static/images/results.png" alt="Assembly Results" style="max-width: 100%; height: auto;"/>
+          </center>
+          <p>
+            The minimum total running time (makespan) over 100 valid placements, expressed in degrees (as angular speed can be decided), for each assembly. The <b>Single-arm</b> row refers to settings where one object is static, and only a single arm moves. The <b>Dual-arm</b> row refers to settings where both arms are moving together. <b>Time saved</b> is the time saved when using two robotic arms, compared to a single one.
+          </p>
+          <center>
+            <img src="static/images/results_table.png" alt="Results Table" style="max-width: 100%; height: auto;"/>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!-- Video carousel -->
@@ -234,7 +281,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
             You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
