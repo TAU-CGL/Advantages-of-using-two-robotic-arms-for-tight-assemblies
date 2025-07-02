@@ -122,13 +122,20 @@ def get_euler_angles_from_matrix(matrix: NDArray[np.float64]) -> list[float]:
 
 
 def get_transformation_matrix(
-    x: float, y: float, z: float, theta_x: float, theta_y: float, theta_z: float
+    x: float,
+    y: float,
+    z: float,
+    theta_x: float,
+    theta_y: float,
+    theta_z: float,
+    adjust: bool = True,
 ) -> NDArray[np.float64]:
     ### experimental adjustments, should check maybe different "home" position for the robot
-    x *= -1
-    y *= -1
-    theta_x *= -1
-    theta_y *= -1
+    if adjust:
+        x *= -1
+        y *= -1
+        theta_x *= -1
+        theta_y *= -1
     ###
 
     R = euler_to_matrix(theta_x, theta_y, theta_z)
