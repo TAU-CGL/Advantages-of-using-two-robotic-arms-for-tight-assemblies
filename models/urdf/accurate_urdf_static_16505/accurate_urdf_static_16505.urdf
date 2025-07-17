@@ -26,13 +26,13 @@
         <collision name="base_link_inertia_respondable">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 1.570796 0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_base_link_inertia_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_base_link_inertia_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="base_link_inertia_visual">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 1.570796 0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_base_link_inertia_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_base_link_inertia_visual_vis_1.dae" />
             </geometry>
             <material name="base_link_inertia_visual_material">
                 <color rgba="0.278431 0.278431 0.278431 1.0" />
@@ -41,7 +41,7 @@
         <visual name="base_link_inertia_visual">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 1.570796 0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_base_link_inertia_visual_vis_2.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_base_link_inertia_visual_vis_2.dae" />
             </geometry>
             <material name="base_link_inertia_visual_material">
                 <color rgba="0.250000 0.250000 0.250000 1.0" />
@@ -64,13 +64,13 @@
         <collision name="shoulder_link_respondable">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 3.141593 -0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="shoulder_link_visual">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 3.141593 -0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_visual_vis_1.dae" />
             </geometry>
             <material name="shoulder_link_visual_material">
                 <color rgba="0.278431 0.278431 0.278431 1.0" />
@@ -79,7 +79,7 @@
         <visual name="shoulder_link_visual">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 3.141593 -0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_visual_vis_2.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_visual_vis_2.dae" />
             </geometry>
             <material name="shoulder_link_visual_material">
                 <color rgba="0.250000 0.250000 0.250000 1.0" />
@@ -88,7 +88,7 @@
         <visual name="shoulder_link_visual">
             <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 3.141593 -0.000000" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_visual_vis_3.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_shoulder_link_visual_vis_3.dae" />
             </geometry>
             <material name="shoulder_link_visual_material">
                 <color rgba="0.490196 0.678431 0.800000 1.0" />
@@ -111,13 +111,13 @@
         <collision name="upper_arm_link_respondable">
             <origin xyz="0.000000 0.000000 0.138000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="upper_arm_link_visual">
             <origin xyz="0.000000 0.000000 0.138000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_1.dae" />
             </geometry>
             <material name="upper_arm_link_visual_material">
                 <color rgba="0.490196 0.678431 0.800000 1.0" />
@@ -126,7 +126,7 @@
         <visual name="upper_arm_link_visual">
             <origin xyz="0.000000 0.000000 0.138000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_2.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_2.dae" />
             </geometry>
             <material name="upper_arm_link_visual_material">
                 <color rgba="0.278431 0.278431 0.278431 1.0" />
@@ -135,7 +135,7 @@
         <visual name="upper_arm_link_visual">
             <origin xyz="0.000000 0.000000 0.138000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_3.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_3.dae" />
             </geometry>
             <material name="upper_arm_link_visual_material">
                 <color rgba="0.250000 0.250000 0.250000 1.0" />
@@ -144,7 +144,7 @@
         <visual name="upper_arm_link_visual">
             <origin xyz="0.000000 0.000000 0.138000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_4.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_upper_arm_link_visual_vis_4.dae" />
             </geometry>
             <material name="upper_arm_link_visual_material">
                 <color rgba="0.820392 0.820392 0.820392 1.0" />
@@ -167,13 +167,13 @@
         <collision name="forearm_link_respondable">
             <origin xyz="0.000000 0.000000 0.007000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="forearm_link_visual">
             <origin xyz="0.000000 0.000000 0.007000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_1.dae" />
             </geometry>
             <material name="forearm_link_visual_material">
                 <color rgba="0.278431 0.278431 0.278431 1.0" />
@@ -182,7 +182,7 @@
         <visual name="forearm_link_visual">
             <origin xyz="0.000000 0.000000 0.007000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_2.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_2.dae" />
             </geometry>
             <material name="forearm_link_visual_material">
                 <color rgba="0.250000 0.250000 0.250000 1.0" />
@@ -191,7 +191,7 @@
         <visual name="forearm_link_visual">
             <origin xyz="0.000000 0.000000 0.007000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_3.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_3.dae" />
             </geometry>
             <material name="forearm_link_visual_material">
                 <color rgba="0.490196 0.678431 0.800000 1.0" />
@@ -200,7 +200,7 @@
         <visual name="forearm_link_visual">
             <origin xyz="0.000000 0.000000 0.007000" rpy="-1.570796 3.141593 1.570796" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_4.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_forearm_link_visual_vis_4.dae" />
             </geometry>
             <material name="forearm_link_visual_material">
                 <color rgba="0.820392 0.820392 0.820392 1.0" />
@@ -223,13 +223,13 @@
         <collision name="wrist_1_link_respondable">
             <origin xyz="0.000000 0.000000 -0.127000" rpy="-1.570796 3.141593 3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="wrist_1_link_visual">
             <origin xyz="0.000000 0.000000 -0.127000" rpy="-1.570796 3.141593 3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_visual_vis_1.dae" />
             </geometry>
             <material name="wrist_1_link_visual_material">
                 <color rgba="0.278431 0.278431 0.278431 1.0" />
@@ -238,7 +238,7 @@
         <visual name="wrist_1_link_visual">
             <origin xyz="0.000000 0.000000 -0.127000" rpy="-1.570796 3.141593 3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_visual_vis_2.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_visual_vis_2.dae" />
             </geometry>
             <material name="wrist_1_link_visual_material">
                 <color rgba="0.490196 0.678431 0.800000 1.0" />
@@ -247,7 +247,7 @@
         <visual name="wrist_1_link_visual">
             <origin xyz="0.000000 0.000000 -0.127000" rpy="-1.570796 3.141593 3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_visual_vis_3.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_1_link_visual_vis_3.dae" />
             </geometry>
             <material name="wrist_1_link_visual_material">
                 <color rgba="0.250000 0.250000 0.250000 1.0" />
@@ -270,13 +270,13 @@
         <collision name="wrist_2_link_respondable">
             <origin xyz="0.000000 -0.000000 -0.099700" rpy="-3.141593 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="wrist_2_link_visual">
             <origin xyz="0.000000 -0.000000 -0.099700" rpy="-3.141593 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_visual_vis_1.dae" />
             </geometry>
             <material name="wrist_2_link_visual_material">
                 <color rgba="0.278431 0.278431 0.278431 1.0" />
@@ -285,7 +285,7 @@
         <visual name="wrist_2_link_visual">
             <origin xyz="0.000000 -0.000000 -0.099700" rpy="-3.141593 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_visual_vis_2.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_visual_vis_2.dae" />
             </geometry>
             <material name="wrist_2_link_visual_material">
                 <color rgba="0.490196 0.678431 0.800000 1.0" />
@@ -294,7 +294,7 @@
         <visual name="wrist_2_link_visual">
             <origin xyz="0.000000 -0.000000 -0.099700" rpy="-3.141593 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_visual_vis_3.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_2_link_visual_vis_3.dae" />
             </geometry>
             <material name="wrist_2_link_visual_material">
                 <color rgba="0.250000 0.250000 0.250000 1.0" />
@@ -317,13 +317,13 @@
         <collision name="wrist_3_link_respondable">
             <origin xyz="0.000000 0.000000 -0.098900" rpy="-1.570796 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_3_link_respondable_coll_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_3_link_respondable_coll_1.dae" />
             </geometry>
         </collision>
         <visual name="wrist_3_link_visual">
             <origin xyz="0.000000 0.000000 -0.098900" rpy="-1.570796 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_3_link_visual_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_wrist_3_link_visual_vis_1.dae" />
             </geometry>
             <material name="wrist_3_link_visual_material">
                 <color rgba="0.820392 0.820392 0.820392 1.0" />
@@ -366,7 +366,7 @@
         <visual name="static_base">
             <origin xyz="-0.205000 -0.000000 0.080000" rpy="1.570796 3.141593 -3.141593" />
             <geometry>
-                <mesh filename="file:///Users/yuvallavi/Documents/MSc/IK-path-gen/models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_static_base_vis_1.dae" />
+                <mesh filename="file:./models/urdf/accurate_urdf_static_16505/accurate_urdf_static_16505_static_base_vis_1.dae" />
             </geometry>
             <material name="static_base_material">
                 <color rgba="0.600000 0.600000 0.600000 1.0" />

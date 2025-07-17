@@ -13,7 +13,8 @@ from itertools import product
 
 from utils.trajectory import get_alternating_trajectories
 
-NUM_DECISION_POINTS = 5
+# NUM_DECISION_POINTS = 5
+NUM_DECISION_POINTS = 1
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -86,7 +87,7 @@ if __name__ == "__main__":
         skip_header=1,
     )
     start_time = time()
-    no_of_trajectories = 100
+    no_of_trajectories = 2
     times = []
     deltas = []
     dynamic_deltas = []
