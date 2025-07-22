@@ -1,0 +1,26 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Current File with Arguments",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": "${command:pickArgs}"
+    },
+    {
+      "name": "Python Debug: balanced_dual_arm_trajectory_generation.py",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/balanced_dual_arm_trajectory_generation.py",
+      "console": "integratedTerminal",
+      "args": [
+        "/Users/yuvallavi/Documents/MSc/Advantages-of-using-two-robotic-arms-for-tight-assemblies/experiments/dual_arm/coppelia_dual_arm_industrial_16505.json"
+      ]
+    }
+  ]
+}

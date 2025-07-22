@@ -15,8 +15,8 @@ DH_PARAMS = (
     0.0997,
     0.2746,
 )  # (a_2, a_3, d_1, d_4, d_5, d_6)
-FK_THETA_OFFSETS = np.array([pi, 0.0, 0.0, 0.0, 0.0, 0.0])  # Adjust based on your robot
-IK_THETA_OFFSETS = np.array([pi, 0.0, 0.0, 0.0, 0.0, 0.0])  # Adjust based on your robot
+FK_THETA_OFFSETS = np.array([0, 0.0, 0.0, 0.0, 0.0, pi])  # Adjust based on your robot
+IK_THETA_OFFSETS = np.array([0, 0.0, 0.0, 0.0, 0.0, pi])  # Adjust based on your robot
 
 
 def normalize_angle(angle):

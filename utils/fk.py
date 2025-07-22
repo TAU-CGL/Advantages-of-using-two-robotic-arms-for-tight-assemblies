@@ -36,7 +36,7 @@ def transformation_to_pose(
     R = T[:3, :3]
     theta_x, theta_y, theta_z = get_euler_angles_from_matrix(R)
 
-    return (x, y, z, theta_x, theta_y, theta_z)
+    return (-x, -y, z, -theta_x, -theta_y, theta_z)
 
 
 def get_forward_kinematics(

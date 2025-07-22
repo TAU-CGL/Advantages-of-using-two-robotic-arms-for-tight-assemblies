@@ -8,11 +8,20 @@ import networkx as nx
 from collision_detection import check_collision_between_robots, check_self_collision
 from utils.get_static_pose import get_static_pose
 from utils.ik import get_inverse_kinematics
-from utils.trajectory import adjust_trajectory_to_joint_limits, place_trajectory
+from utils.trajectory import (
+    adjust_trajectory_to_joint_limits,
+    place_trajectory,
+    pose_to_matrix,
+    matrix_to_pose,
+    get_relative_pose,
+)
 from utils.utils import (
+    euler_to_matrix,
+    get_euler_angles_from_matrix,
     get_transformation_matrix,
     min_max_edge_dijkstra,
 )
+from utils.fk import forward_kinematics
 
 np.set_printoptions(suppress=True, precision=6)
 
@@ -361,5 +370,317 @@ def generate_dual_arm_ik_of_trajectory(
         static_ik_trajectory,
         len(placed_trajectory) - 1,
         ik_trajectory_max_edge,
+        True,
+    )
+
+
+# the relative path should be the poses of the dynamic arm's end effector relative to the static arm's end effector,
+# meaning both are after considering the reference point
+def generate_balanced_dual_arm_ik_of_trajectory(
+    relative_trajectory: NDArray[np.float64],
+    dynamic_initial_pose: List[float],
+    dynamic_branch: Tuple[int, ...],
+    static_branch: Tuple[int, ...],
+    dh_static: Tuple[float, ...],
+    dh_dynamic: Tuple[float, ...],
+    static_part_ref_point: NDArray[np.float64],
+    static_part_arm_position: NDArray[np.float64],
+    dynamic_part_arm_position: NDArray[np.float64],
+    static_part_relative_position: NDArray[np.float64],
+    static_part_relative_rotation: NDArray[np.float64],
+    theta_offsets: NDArray[np.float64],
+    dynamic_robot_id: str,
+    static_robot_id: str,
+    test_AB=False,
+    makespan_objective=False,
+    delta=10,
+) -> Tuple[NDArray, NDArray, int, float, bool]:
+    current_dynamic_pose = np.array(dynamic_initial_pose)
+    # Step 1: Find IK of the dynamic part in the dynamic_initial_pose and the provided branch
+    dynamic_initial_T = get_transformation_matrix(
+        dynamic_initial_pose[0],
+        dynamic_initial_pose[1],
+        dynamic_initial_pose[2],
+        dynamic_initial_pose[3],
+        dynamic_initial_pose[4],
+        dynamic_initial_pose[5],
+    )
+
+    dynamic_initial_ik = get_inverse_kinematics(
+        dh_dynamic,
+        dynamic_initial_T,
+        dynamic_branch[0],
+        dynamic_branch[1],
+        dynamic_branch[2],
+        theta_offsets,
+    )
+
+    if dynamic_initial_ik is None:
+        # print("1")
+        return np.array([]), np.array([]), 0, 0, False
+
+    dynamic_initial_ik = np.array(dynamic_initial_ik)
+
+    # Check for self-collision
+    if check_self_collision(dynamic_initial_ik, dynamic_robot_id):
+        # print("2")
+        return np.array([]), np.array([]), 0, 0, False
+
+    # Step 2: Find the initial static pose when dynamic is at dynamic_initial_pose
+    static_relative_pose = np.array(
+        get_relative_pose(
+            relative_trajectory[0],
+            np.zeros_like(relative_trajectory[0]),
+        )
+    )
+
+    static_initial_pose = get_static_pose(
+        current_dynamic_pose,
+        static_part_arm_position,
+        dynamic_part_arm_position,
+        static_relative_pose[:3],
+        static_relative_pose[3:],
+    )
+
+    static_initial_pose = place_trajectory(
+        np.array([static_initial_pose]),
+        static_initial_pose,
+        1,
+        static_part_ref_point,
+    )[0]
+
+    # Step 3: Compute IK of the static part in the pose from previous step and the provided branch
+    static_initial_T = get_transformation_matrix(
+        static_initial_pose[0],
+        static_initial_pose[1],
+        static_initial_pose[2],
+        static_initial_pose[3],
+        static_initial_pose[4],
+        static_initial_pose[5],
+    )
+
+    static_initial_ik = get_inverse_kinematics(
+        dh_static,
+        static_initial_T,
+        static_branch[0],
+        static_branch[1],
+        static_branch[2],
+        theta_offsets,
+    )
+
+    if static_initial_ik is None:
+        # print("3")
+        return np.array([]), np.array([]), 0, 0, False
+
+    static_initial_ik = np.array(static_initial_ik)
+
+    # Check for self-collision
+    if check_self_collision(static_initial_ik, static_robot_id):
+        # print("4")
+        return np.array([]), np.array([]), 0, 0, False
+
+    # Check for collision between robots
+    if check_collision_between_robots(
+        dynamic_initial_ik, dynamic_robot_id, static_initial_ik, static_robot_id
+    ):
+        # print("5")
+        return np.array([]), np.array([]), 0, 0, False
+
+    # Step 4: Keep the IK solutions as the current configuration for each arm
+    current_dynamic_ik = dynamic_initial_ik.copy()
+    current_static_ik = static_initial_ik.copy()
+
+    # Initialize trajectories
+    dynamic_trajectory = [current_dynamic_ik]
+    static_trajectory = [current_static_ik]
+    total_movement = 0.0
+
+    # Step 5: For each step in relative_trajectory
+    for i in range(1, len(relative_trajectory)):
+        # Step 5.1: Find the next pose that the dynamic part should be in
+        # Get current dynamic pose using forward kinematics
+
+        # Apply the relative trajectory step to get the target pose
+        target_dynamic_pose = place_trajectory(
+            np.array(relative_trajectory[i - 1 : i + 1]),
+            current_dynamic_pose,
+            1,
+            np.zeros(6),
+        )[1]
+
+        # Convert to transformation matrix
+        target_dynamic_T = get_transformation_matrix(
+            target_dynamic_pose[0],
+            target_dynamic_pose[1],
+            target_dynamic_pose[2],
+            target_dynamic_pose[3],
+            target_dynamic_pose[4],
+            target_dynamic_pose[5],
+        )
+
+        # Step 5.2: Perform IK on this pose for every possible branch (8 options)
+        best_solution = None
+        best_dynamic_pose = None
+        min_movement = float("inf")
+
+        for ratio in [0.25, 0.5, 0.75]:
+            for shoulder in [0, 1]:
+                for wrist in [0, 1]:
+                    for elbow in [0, 1]:  # Consider both elbow up and down
+                        # Get IK solution for dynamic arm
+                        original_dynamic_ik_solution = get_inverse_kinematics(
+                            dh_dynamic,
+                            target_dynamic_T,
+                            shoulder,
+                            wrist,
+                            elbow,
+                            theta_offsets,
+                        )
+
+                        if original_dynamic_ik_solution is None:
+                            continue
+
+                        original_dynamic_ik_solution = np.array(
+                            original_dynamic_ik_solution
+                        )
+
+                        # Check self-collision for dynamic arm
+
+                        # Step 5.3: For each such IK solution
+                        # Step 5.3.1: Move a way from the current configuration to the solution
+                        dynamic_ik_solution = (
+                            ratio * original_dynamic_ik_solution
+                            + (1 - ratio) * current_dynamic_ik
+                        )
+
+                        if check_self_collision(dynamic_ik_solution, dynamic_robot_id):
+                            continue
+                        # Step 5.3.2: Perform forward kinematics
+                        half_way_dynamic_pose = np.array(
+                            forward_kinematics(
+                                dh_dynamic,
+                                dynamic_ik_solution,
+                                theta_offsets,
+                                return_rpy=True,
+                            )
+                        )
+                        # Step 5.3.3: Find the pose of the static part according to the current step
+                        static_relative_pose = np.array(
+                            get_relative_pose(
+                                relative_trajectory[i],
+                                np.zeros_like(relative_trajectory[i]),
+                            )
+                        )
+
+                        target_static_pose = get_static_pose(
+                            half_way_dynamic_pose,
+                            static_part_arm_position,
+                            dynamic_part_arm_position,
+                            static_relative_pose[:3],
+                            static_relative_pose[3:],
+                        )
+
+                        target_static_pose = place_trajectory(
+                            np.array([target_static_pose]),
+                            target_static_pose,
+                            1,
+                            static_part_ref_point,
+                        )[0]
+
+                        # Convert to transformation matrix
+                        target_static_T = get_transformation_matrix(
+                            target_static_pose[0],
+                            target_static_pose[1],
+                            target_static_pose[2],
+                            target_static_pose[3],
+                            target_static_pose[4],
+                            target_static_pose[5],
+                        )
+
+                        # Step 5.3.4: Perform IK to the static part for every possible branch (8 options)
+                        for static_shoulder in [0, 1]:
+                            for static_wrist in [0, 1]:
+                                for static_elbow in [
+                                    0,
+                                    1,
+                                ]:  # Consider both elbow up and down
+                                    static_ik_solution = get_inverse_kinematics(
+                                        dh_static,
+                                        target_static_T,
+                                        static_shoulder,
+                                        static_wrist,
+                                        static_elbow,
+                                        theta_offsets,
+                                    )
+
+                                    if static_ik_solution is None:
+                                        continue
+
+                                    static_ik_solution = np.array(static_ik_solution)
+
+                                    # Check self-collision for static arm
+                                    if check_self_collision(
+                                        static_ik_solution, static_robot_id
+                                    ):
+                                        continue
+
+                                    # Check collision between robots
+                                    if check_collision_between_robots(
+                                        dynamic_ik_solution,
+                                        dynamic_robot_id,
+                                        static_ik_solution,
+                                        static_robot_id,
+                                    ):
+                                        continue
+
+                                    # Calculate movement cost
+                                    dynamic_movement = np.max(
+                                        np.abs(dynamic_ik_solution - current_dynamic_ik)
+                                    )
+                                    static_movement = np.max(
+                                        np.abs(static_ik_solution - current_static_ik)
+                                    )
+                                    total_movement_cost = max(
+                                        dynamic_movement, static_movement
+                                    )
+
+                                    # Update best solution if this one has less movement
+                                    if (
+                                        total_movement_cost < min_movement
+                                        and total_movement_cost < np.deg2rad(delta)
+                                    ):
+                                        min_movement = total_movement_cost
+                                        best_solution = (
+                                            dynamic_ik_solution,
+                                            static_ik_solution,
+                                        )
+                                        best_dynamic_pose = half_way_dynamic_pose
+
+        # Step 5.4: Pick the solution with least movement and make it the new current configuration
+        if best_solution is None:
+            # print("6")
+            return np.array([]), np.array([]), i, 0, False
+
+        current_dynamic_ik, current_static_ik = best_solution
+
+        # Add to trajectories
+        dynamic_trajectory.append(current_dynamic_ik)
+        static_trajectory.append(current_static_ik)
+        current_dynamic_pose = best_dynamic_pose
+        total_movement += min_movement
+
+    # Convert trajectories to numpy arrays
+    dynamic_trajectory = np.array(dynamic_trajectory)
+    static_trajectory = np.array(static_trajectory)
+
+    # Adjust trajectories to joint limits
+    dynamic_trajectory = adjust_trajectory_to_joint_limits(dynamic_trajectory)
+    static_trajectory = adjust_trajectory_to_joint_limits(static_trajectory)
+
+    return (
+        dynamic_trajectory,
+        static_trajectory,
+        len(relative_trajectory),
+        np.rad2deg(total_movement),
         True,
     )
