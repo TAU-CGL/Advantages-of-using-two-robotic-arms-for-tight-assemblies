@@ -7,11 +7,13 @@ import numpy as np
 from time import time
 
 from collision_detection import load_urdf
-from trajectory_ik import generate_balanced_dual_arm_ik_of_trajectory
+from trajectory_ik import generate_balanced_dual_arm_ik_of_trajectory, generate_continuous_balanced_dual_arm_ik_of_trajectory
 from utils.parse_config import parse_config_dual_arm
 from itertools import product
 
 from utils.trajectory import get_relative_pose, place_trajectory
+
+np.set_printoptions(precision=2, suppress=True)
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -114,6 +116,7 @@ if __name__ == "__main__":
         )
         if not os.path.exists(trajectory_output_dir_path):
             os.makedirs(trajectory_output_dir_path, exist_ok=True)
+        # TODO: consider randomizing close to the plane separating the arms' bases - to increase success chances
         initial_pose = [
             (np.random.rand() - 0.5) * 1,
             (np.random.rand() - 1),
@@ -140,7 +143,8 @@ if __name__ == "__main__":
                 step_reached,
                 total_movement,
                 ik_success,
-            ) = generate_balanced_dual_arm_ik_of_trajectory(
+            # ) = generate_balanced_dual_arm_ik_of_trajectory(
+            ) = generate_continuous_balanced_dual_arm_ik_of_trajectory(
                 relative_trajectory,
                 initial_pose,
                 indices[:3],
@@ -156,7 +160,7 @@ if __name__ == "__main__":
                 dynamic_robot_id,
                 static_robot_id,
             )
-            # print(indices, step_reached)
+
             if step_reached >= max_step_reached:
                 max_step_reached = step_reached
             if ik_success:
@@ -165,7 +169,7 @@ if __name__ == "__main__":
                     min_makespan = total_movement
                     best_dynamic_part_ik = dynamic_part_ik
                     best_static_part_ik = static_part_ik
-                    print("new best makespan", indices, total_movement)
+                    print("new best makespan", indices, '{:.2f} sec'.format(total_movement))
         if overall_ik_success:
             trajectory_report = {
                 "time": time() - start_time,
@@ -196,9 +200,7 @@ if __name__ == "__main__":
             times.append(time() - start_time)
             initial_poses.append(initial_pose)
             makespans.append(min_makespan)
-            print(
-                f"succeeded. Best makespan: {min_makespan}. Best so far: {np.min(makespans)}"
-            )
+            print('succeeded. Best makespan: {:.2f}. Best so far: {:.2f}'.format(min_makespan, np.min(makespans)))
             start_time = time()
         else:
             print(max_step_reached)

@@ -50,5 +50,6 @@ def check_collision_between_robots(joint_angles1, robot_id1, joint_angles2, robo
 
 
 def load_urdf(urdf_path, position=[0, 0, 0], orientation=[0, 0, 0, 1]):
+    print("Trying to load URDF from:", urdf_path)
     robot_id = p.loadURDF(urdf_path, position, orientation, useFixedBase=True)
     return robot_id
