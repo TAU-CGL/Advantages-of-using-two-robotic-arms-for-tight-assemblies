@@ -169,7 +169,7 @@ if __name__ == "__main__":
                     min_makespan = total_movement
                     best_dynamic_part_ik = dynamic_part_ik
                     best_static_part_ik = static_part_ik
-                    print("new best makespan", indices, '{:.2f} sec'.format(total_movement))
+                    print("new best makespan", indices, '{:.2f} deg'.format(total_movement))
         if overall_ik_success:
             trajectory_report = {
                 "time": time() - start_time,

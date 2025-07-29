@@ -1003,31 +1003,28 @@ def generate_continuous_balanced_dual_arm_ik_of_trajectory(
         total_movement_cost = max(dynamic_movement, static_movement)
 
         # Verify interval solution, and add to trajectory
+        # if this best option suffers collisions - fail this trajectory all together
         best_solution = None
-        if total_movement_cost < min_movement and total_movement_cost < np.deg2rad(delta):
-            # sanity check and close to optimality verification
-            # print(
-            #     "[raw movements: {:.4f}, {:.4f}], relative raw movements: [{:.2f}, {:.2f}], optimality (actual static/dynamic): {:.2f}, final/dynamic_raw: {:.2f}".format(
-            #         min_dynamic_movement, min_static_movement,
-            #         min_dynamic_movement / (min_dynamic_movement + min_static_movement),
-            #         min_static_movement / (min_dynamic_movement + min_static_movement),
-            #         static_movement / dynamic_movement,  # should be (and usually indeed is) very close to 1.00
-            #         total_movement_cost / min_dynamic_movement))
-            if check_self_collision(final_static_ik_solution, static_robot_id) or \
-               check_self_collision(final_dynamic_ik_solution, dynamic_robot_id) or \
-               check_collision_between_robots(final_dynamic_ik_solution, dynamic_robot_id, final_static_ik_solution, static_robot_id):
-                return np.array([]), np.array([]), i, 0, False
-            else:
-                min_movement = total_movement_cost
-                best_solution = (final_dynamic_ik_solution, final_static_ik_solution)
-                best_dynamic_pose = half_way_dynamic_pose
 
-        if best_solution is None:
+        # deebug sanity check and close to optimality verification
+        # print(
+        #     "[raw movements: {:.4f}, {:.4f}], relative raw movements: [{:.2f}, {:.2f}], optimality (actual static/dynamic): {:.2f}, final/dynamic_raw: {:.2f}".format(
+        #         min_dynamic_movement, min_static_movement,
+        #         min_dynamic_movement / (min_dynamic_movement + min_static_movement),
+        #         min_static_movement / (min_dynamic_movement + min_static_movement),
+        #         static_movement / dynamic_movement,  # should be (and usually indeed is) very close to 1.00
+        #         total_movement_cost / min_dynamic_movement))
+        if check_self_collision(final_static_ik_solution, static_robot_id) or \
+           check_self_collision(final_dynamic_ik_solution, dynamic_robot_id) or \
+           check_collision_between_robots(final_dynamic_ik_solution, dynamic_robot_id, final_static_ik_solution, static_robot_id):
             return np.array([]), np.array([]), i, 0, False
-
-        current_dynamic_ik, current_static_ik = best_solution
+        else:
+            min_movement = total_movement_cost
+            best_solution = (final_dynamic_ik_solution, final_static_ik_solution)
+            best_dynamic_pose = half_way_dynamic_pose
 
         # Add to trajectories
+        current_dynamic_ik, current_static_ik = best_solution
         dynamic_trajectory.append(current_dynamic_ik)
         static_trajectory.append(current_static_ik)
         current_dynamic_pose = best_dynamic_pose
