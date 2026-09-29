@@ -11,6 +11,6 @@
   "static_part_arm_position": [0.5, -0.955, 0.264],
   "static_part_relative_position": [0.00068, -0.00113, 0.00039],
   "static_part_relative_rotation": [0, 0, 0],
-  "theta_offsets": [180, 0, 0, 0, 0, 180],
+  "theta_offsets": [0, 0, 0, 0, 0, 180],
   "position_factor": 0.09
 }

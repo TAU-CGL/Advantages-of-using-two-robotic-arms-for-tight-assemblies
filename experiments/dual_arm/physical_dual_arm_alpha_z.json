@@ -8,9 +8,12 @@
   "dynamic_ref_point_relative_pose": [0, -0.055, -0.006, -90.0, 0, 90],
   "static_ref_point_relative_pose": [0.00041, -0.063, 0.00091, -90.0, 0, -66.0],
   "dynamic_part_arm_position": [0, 0, 0],
-  "static_part_arm_position": [0.5, -0.952, 0.264],
+  "fill_two_rows_with_static_arm_relative_pose": [],
+  "static_part_arm_position": [-0.218, -0.572, -0.264],
+  "static_part_arm_rotation": [0.195633, -1.835142, 2.553016],
   "static_part_relative_position": [-0.03834, 0.04674, -0.02207],
   "static_part_relative_rotation": [-85.263, 1.895, 20.842],
-  "theta_offsets": [180, 0, 0, 0, 0, 180],
+  "theta_offsets_original": [0, 0, 0, 0, 0, 180],
+  "theta_offsets": [0, 0, 0, 0, 0, 180],
   "position_factor": 0.07
 }
