@@ -153,6 +153,8 @@ def generate_dual_arm_ik_of_trajectory(
     keep_in_center=False,
     makespan_objective=False,
     delta=50,
+    static_part_arm_rotation: NDArray[np.float64] = None,
+    dynamic_part_arm_rotation: NDArray[np.float64] = None,
 ) -> Tuple[NDArray, NDArray, int, float, bool]:
     placed_trajectory = place_trajectory(
         trajectory,
@@ -166,6 +168,8 @@ def generate_dual_arm_ik_of_trajectory(
         dynamic_part_arm_position,
         static_part_relative_position,
         static_part_relative_rotation,
+        static_part_arm_rotation=static_part_arm_rotation,
+        dynamic_part_arm_rotation=dynamic_part_arm_rotation,
     )
     placed_static_trajectory = place_trajectory(
         static_part_trajectory,
@@ -394,6 +398,8 @@ def generate_balanced_dual_arm_ik_of_trajectory(
     test_AB=False,
     makespan_objective=False,
     delta=10,
+    static_part_arm_rotation: NDArray[np.float64] = None,
+    dynamic_part_arm_rotation: NDArray[np.float64] = None,
 ) -> Tuple[NDArray, NDArray, int, float, bool]:
     current_dynamic_pose = np.array(dynamic_initial_pose)
     # Step 1: Find IK of the dynamic part in the dynamic_initial_pose and the provided branch
@@ -440,6 +446,8 @@ def generate_balanced_dual_arm_ik_of_trajectory(
         dynamic_part_arm_position,
         static_relative_pose[:3],
         static_relative_pose[3:],
+        static_part_arm_rotation=static_part_arm_rotation,
+        dynamic_part_arm_rotation=dynamic_part_arm_rotation,
     )
 
     static_initial_pose = place_trajectory(
@@ -578,6 +586,8 @@ def generate_balanced_dual_arm_ik_of_trajectory(
                             dynamic_part_arm_position,
                             static_relative_pose[:3],
                             static_relative_pose[3:],
+                            static_part_arm_rotation=static_part_arm_rotation,
+                            dynamic_part_arm_rotation=dynamic_part_arm_rotation,
                         )
 
                         target_static_pose = place_trajectory(
@@ -710,6 +720,8 @@ def generate_continuous_balanced_dual_arm_ik_of_trajectory(
     test_AB=False,
     makespan_objective=False,
     delta=10,
+    static_part_arm_rotation: NDArray[np.float64] = None,
+    dynamic_part_arm_rotation: NDArray[np.float64] = None,
 ) -> Tuple[NDArray, NDArray, int, float, bool]:
     current_dynamic_pose = np.array(dynamic_initial_pose)
     # Step 1: Find IK of the dynamic part in the dynamic_initial_pose and the provided branch
@@ -754,6 +766,8 @@ def generate_continuous_balanced_dual_arm_ik_of_trajectory(
         dynamic_part_arm_position,
         static_relative_pose[:3],
         static_relative_pose[3:],
+        static_part_arm_rotation=static_part_arm_rotation,
+        dynamic_part_arm_rotation=dynamic_part_arm_rotation,
     )
 
     static_initial_pose = place_trajectory(
@@ -884,6 +898,8 @@ def generate_continuous_balanced_dual_arm_ik_of_trajectory(
             dynamic_part_arm_position,
             static_relative_pose[:3],
             static_relative_pose[3:],
+            static_part_arm_rotation=static_part_arm_rotation,
+            dynamic_part_arm_rotation=dynamic_part_arm_rotation,
         )
 
         target_static_pose = place_trajectory(
@@ -962,6 +978,8 @@ def generate_continuous_balanced_dual_arm_ik_of_trajectory(
             dynamic_part_arm_position,
             static_relative_pose[:3],
             static_relative_pose[3:],
+            static_part_arm_rotation=static_part_arm_rotation,
+            dynamic_part_arm_rotation=dynamic_part_arm_rotation,
         )
 
         target_static_pose = place_trajectory(

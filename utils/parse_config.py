@@ -65,6 +65,8 @@ def parse_config_dual_arm(
     NDArray[np.float64],
     NDArray[np.float64],
     NDArray[np.float64],
+    NDArray[np.float64],
+    NDArray[np.float64],
 ]:
     with open(file_path, "r") as file:
         data = json.load(file)
@@ -95,6 +97,12 @@ def parse_config_dual_arm(
     static_part_relative_rotation = [0, 0, 0]
     if "static_part_relative_rotation" in data:
         static_part_relative_rotation = data["static_part_relative_rotation"]
+    static_part_arm_rotation = [0, 0, 0]
+    if "static_part_arm_rotation" in data:
+        static_part_arm_rotation = data["static_part_arm_rotation"]
+    dynamic_part_arm_rotation = [0, 0, 0]
+    if "dynamic_part_arm_rotation" in data:
+        dynamic_part_arm_rotation = data["dynamic_part_arm_rotation"]
     dynamic_part_arm_dh: Tuple[float, ...] = get_dh_params(dynamic_dh_path)
     static_part_arm_dh: Tuple[float, ...] = get_dh_params(static_dh_path)
     dynamic_ref_point_relative_pose[3:] = list(
@@ -119,4 +127,6 @@ def parse_config_dual_arm(
         np.array(static_part_arm_position),
         np.array(static_part_relative_position),
         np.radians(np.array(static_part_relative_rotation)),
+        np.radians(np.array(static_part_arm_rotation)),
+        np.radians(np.array(dynamic_part_arm_rotation)),
     )

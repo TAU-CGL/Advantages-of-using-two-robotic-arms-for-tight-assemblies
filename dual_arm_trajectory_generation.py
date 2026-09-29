@@ -72,6 +72,8 @@ if __name__ == "__main__":
         static_part_arm_position,
         static_part_relative_position,
         static_part_relative_rotation,
+        static_part_arm_rotation,
+        dynamic_part_arm_rotation,
     ) = parse_config_dual_arm(args.config_file)
     output_ts_dir_path = os.path.join(
         "./paths/outputs/industrial_06397/hausdorff",
@@ -176,6 +178,8 @@ if __name__ == "__main__":
                     theta_offsets,
                     dynamic_robot_id,
                     static_robot_id,
+                    static_part_arm_rotation=static_part_arm_rotation,
+                    dynamic_part_arm_rotation=dynamic_part_arm_rotation,
                 )
             )
             print(indices, step_reached)
