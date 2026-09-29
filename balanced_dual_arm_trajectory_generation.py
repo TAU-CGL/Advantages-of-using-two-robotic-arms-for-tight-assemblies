@@ -70,6 +70,8 @@ if __name__ == "__main__":
         static_part_arm_position,
         static_part_relative_position,
         static_part_relative_rotation,
+        static_part_arm_rotation,
+        dynamic_part_arm_rotation,
     ) = parse_config_dual_arm(args.config_file)
     output_ts_dir_path = args.output_dir
 
@@ -81,7 +83,7 @@ if __name__ == "__main__":
         skip_header=1,
     )
     start_time = time()
-    no_of_trajectories = 50
+    no_of_trajectories = 10
     times = []
     makespans = []
     initial_poses = []
@@ -117,14 +119,24 @@ if __name__ == "__main__":
         if not os.path.exists(trajectory_output_dir_path):
             os.makedirs(trajectory_output_dir_path, exist_ok=True)
         # TODO: consider randomizing close to the plane separating the arms' bases - to increase success chances
+        # initial_pose = [
+        #     (np.random.rand() - 0.5) * 1,
+        #     (np.random.rand() - 1),
+        #     (np.random.rand() * 0.7 + 0.2),
+        #     (np.random.rand() - 0.5) * 2 * pi,
+        #     (np.random.rand() - 0.5) * 2 * pi,
+        #     (np.random.rand() - 0.5) * 2 * pi,
+        # ]
+        # to better fit our settings in the lab:
         initial_pose = [
-            (np.random.rand() - 0.5) * 1,
-            (np.random.rand() - 1),
+            (np.random.rand()) *0.5,
+            (-0.2 -np.random.rand()*0.5 ),
             (np.random.rand() * 0.7 + 0.2),
             (np.random.rand() - 0.5) * 2 * pi,
             (np.random.rand() - 0.5) * 2 * pi,
             (np.random.rand() - 0.5) * 2 * pi,
         ]
+
         dynamic_trajectory_output_path = os.path.join(
             trajectory_output_dir_path, "dynamic_ik_trajectory.csv"
         )
@@ -136,7 +148,10 @@ if __name__ == "__main__":
         max_step_reached = -1
         best_dynamic_part_ik = None
         best_static_part_ik = None
-        for indices in product([0, 1], repeat=6):
+        # use only right arm branch on both robots. accelerated x4 with no visible limitation
+        # and only elbow up. additional x4, and less collisions with the table
+        branch_indices = [ind for ind in product([0, 1], repeat=6) if ind[0]==1 and ind[3]==1 and ind[2]==1 and ind[5]==1]
+        for indices in branch_indices:
             (
                 dynamic_part_ik,
                 static_part_ik,
@@ -159,6 +174,8 @@ if __name__ == "__main__":
                 theta_offsets,
                 dynamic_robot_id,
                 static_robot_id,
+                static_part_arm_rotation=static_part_arm_rotation,
+                dynamic_part_arm_rotation=dynamic_part_arm_rotation,
             )
 
             if step_reached >= max_step_reached:
@@ -200,7 +217,7 @@ if __name__ == "__main__":
             times.append(time() - start_time)
             initial_poses.append(initial_pose)
             makespans.append(min_makespan)
-            print('succeeded. Best makespan: {:.2f}. Best so far: {:.2f}'.format(min_makespan, np.min(makespans)))
+            print('succeeded. Best makespan: {:.2f}. Best so far: {:.2f} at trajectory #{}'.format(min_makespan, np.min(makespans), 1+np.argmin(makespans)))
             start_time = time()
         else:
             print(max_step_reached)
